@@ -1,0 +1,33 @@
+# FastAPI y servidor
+fastapi==0.109.0
+uvicorn[standard]==0.27.0
+pydantic==2.5.0
+pydantic-settings==2.1.0
+
+# SSH y transferencia de archivos
+paramiko==3.4.0
+scp==0.14.5
+
+# Base de datos
+sqlalchemy==2.0.25
+aiosqlite==0.19.0
+
+# Autenticación (para futuras versiones)
+python-jose[cryptography]==3.3.0
+passlib[bcrypt]==1.7.4
+python-multipart==0.0.6
+
+# WebSockets para monitoreo en tiempo real
+python-socketio==5.11.0
+websockets==12.0
+
+# VASP parsing y manipulación de estructuras
+pymatgen==2024.1.26
+ase==3.22.1
+
+# Utilidades
+python-dotenv==1.0.0
+aiofiles==23.2.1
+
+# CORS para desarrollo
+python-multipart==0.0.6
