@@ -4,7 +4,7 @@ import logging
 
 from app.config import settings
 from app.models.database import init_db
-from app.api.routes import projects, dos
+from app.api.routes import projects, dos, relax
 
 # Configurar logging
 logging.basicConfig(
@@ -35,6 +35,7 @@ app.add_middleware(
 # Incluir routers
 app.include_router(projects.router, prefix="/api")
 app.include_router(dos.router, prefix="/api")
+app.include_router(relax.router, prefix="/api")
 
 
 @app.on_event("startup")

@@ -78,6 +78,9 @@ class JobSubmitRequest(BaseModel):
     project_id: int
     ncores: int = Field(default=4, ge=1, le=128)
     walltime: str = "24:00:00"  # Formato HH:MM:SS
+    nodelist: Optional[str] = None
+    partition: Optional[str] = None
+    execution_commands: Optional[list[str]] = []
 
 
 class JobStatusResponse(BaseModel):
@@ -87,4 +90,47 @@ class JobStatusResponse(BaseModel):
     status: ProjectStatus
     progress: Optional[float] = None  # Porcentaje de progreso
     current_step: Optional[str] = None
+    progress: Optional[float] = None  # Porcentaje de progreso
+    current_step: Optional[str] = None
     estimated_time: Optional[int] = None  # Segundos restantes
+    error_details: Optional[str] = None
+    stdout_excerpt: Optional[str] = None
+
+
+class RelaxGenerateRequest(BaseModel):
+    """Request para generar archivos RELAX con VASPKIT o archivos personalizados"""
+    project_id: int
+    
+    # Parámetros de cálculo (usados si no se proveen archivos)
+    encut: float = Field(default=500, description="Energía de corte (eV)")
+    kpoints_density: float = Field(default=0.03, description="Densidad de k-points (Å⁻¹)")
+    isif: int = Field(default=3, ge=0, le=7, description="Tipo de relajación (0-7)")
+    nsw: int = Field(default=100, ge=1, description="Máximo de pasos iónicos")
+    ibrion: int = Field(default=2, ge=-1, le=3, description="Algoritmo de optimización")
+    ediffg: float = Field(default=-0.01, description="Criterio de convergencia de fuerzas (eV/Å)")
+    
+    # Archivos opcionales (si se proveen, se usan en lugar de generar)
+    incar: Optional[str] = Field(default=None, description="Contenido INCAR personalizado")
+    kpoints: Optional[str] = Field(default=None, description="Contenido KPOINTS personalizado")
+    potcar_elements: Optional[list[str]] = Field(default=None, description="Lista de elementos para POTCAR")
+
+
+class RelaxResultsResponse(BaseModel):
+    """Respuesta con resultados de cálculo RELAX"""
+    project_id: int
+    status: ProjectStatus
+    
+    # Estructura relajada
+    contcar: Optional[str] = None  # Contenido del CONTCAR
+    
+    # Información energética
+    final_energy: Optional[float] = None  # Energía final (eV)
+    energy_per_atom: Optional[float] = None
+    
+    # Información de convergencia
+    ionic_steps: Optional[int] = None  # Número de pasos iónicos realizados
+    converged: Optional[bool] = None
+    max_force: Optional[float] = None  # Fuerza máxima residual (eV/Å)
+    
+    # Extracto del OUTCAR
+    outcar_excerpt: Optional[str] = None

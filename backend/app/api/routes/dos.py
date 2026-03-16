@@ -27,7 +27,22 @@ async def generate_dos_files(
     db: AsyncSession = Depends(get_db)
 ):
     """
-    Genera archivos INCAR y KPOINTS para cálculo DOS usando VASPKIT
+    Generate INCAR and KPOINTS files for DOS calculation using VASPKIT.
+
+    This endpoint creates the necessary input files for a Density of States (DOS)
+    calculation by connecting to a remote cluster via SSH, uploading the POSCAR file,
+    and using VASPKIT to generate INCAR, KPOINTS, and POTCAR files.
+
+    Args:
+        request: DOSGenerateRequest containing project_id, encut, and kpoints_density.
+        db: Async database session dependency.
+
+    Returns:
+        ProjectResponse: The updated project with generated files and READY status.
+
+    Raises:
+        HTTPException: 404 if project not found, 400 if no POSCAR defined,
+                       500 for other errors during file generation.
     """
     try:
         # Obtener proyecto

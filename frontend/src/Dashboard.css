@@ -1,0 +1,189 @@
+:root {
+    --bg-dark: #1E2126;
+    --text-light: #EAEAEA;
+    --text-muted: #B0B3B8;
+    --btn-primary-bg: #D9D9D9;
+    --btn-secondary-bg: #D9D9D9;
+    --btn-text-dark: #1E2126;
+    --hover-overlay: rgba(255, 255, 255, 0.1);
+}
+
+.dashboard-container {
+    background-color: var(--bg-dark);
+    color: var(--text-light);
+    height: 100vh;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-family: 'Inter', system-ui, Avenir, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+}
+
+/* Header */
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2rem 3rem;
+    /* Restored padding for visual spacing */
+}
+
+.logo-section svg {
+    height: 32px;
+}
+
+.dashboard-nav {
+    display: flex;
+    gap: 2rem;
+}
+
+.dashboard-nav a {
+    color: var(--text-light);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.dashboard-nav a:hover {
+    color: var(--text-muted);
+}
+
+/* Main Content */
+.dashboard-main {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin-top: -5rem;
+    /* Optical balance upwards */
+}
+
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 300px;
+}
+
+.action-buttons button {
+    border: none;
+    border-radius: 12px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.1s;
+    font-family: inherit;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.action-buttons button:active {
+    transform: scale(0.98);
+}
+
+.primary-action {
+    background-color: #E2E4E9;
+    /* Slightly lighter for primary */
+    color: #1E2126;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    position: relative;
+    padding-left: 1.5rem;
+    /* offset for icon centering if needed */
+}
+
+.plus-icon {
+    font-weight: 900;
+    font-size: 1.2rem;
+    margin-right: 0.5rem;
+}
+
+.secondary-action {
+    background-color: #D1D5DB;
+    /* Greyish */
+    color: #374151;
+}
+
+/* Footer / Recent Projects */
+/* Footer / Recent Projects */
+.dashboard-footer {
+    padding: 2rem 4rem;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin: 0 4rem;
+    margin-bottom: 2rem;
+    display: flex;
+    justify-content: center;
+    /* Center the footer-content wrapper horizontally */
+}
+
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* Align children (text) to the left */
+    /* width: fit-content;  Implicitly behaves like this in flex center context but good to be aware */
+}
+
+.recent-projects-section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    font-size: 1rem;
+    color: var(--text-light);
+    margin-bottom: 1rem;
+}
+
+.section-title svg {
+    opacity: 0.8;
+}
+
+.project-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+    padding-left: 2.2rem;
+    /* Restore indentation for file list */
+    /* align-items: center; REMOVED to allow left align */
+}
+
+.project-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.project-item:hover {
+    color: var(--text-light);
+}
+
+.file-icon {
+    opacity: 0.6;
+}
+
+.status-bar {
+    display: flex;
+    align-items: center;
+    color: var(--text-muted);
+    font-size: 0.85rem;
+}
+
+.status-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.status-item svg {
+    opacity: 0.8;
+}
